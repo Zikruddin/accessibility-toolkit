@@ -1,0 +1,131 @@
+/* D2i Accessibility Toolkit — Admin Styles */
+
+/* ---------- Layout ---------- */
+.d2i-a11y-admin-wrap {
+	max-width: 1200px;
+}
+
+.d2i-a11y-admin-header {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 20px 0 12px;
+	border-bottom: 2px solid #003366;
+	margin-bottom: 20px;
+}
+
+.d2i-a11y-admin-header h1 {
+	margin: 0 0 4px;
+	font-size: 22px;
+	color: #003366;
+}
+
+.d2i-a11y-admin-header p {
+	margin: 0;
+	color: #555;
+}
+
+.d2i-a11y-admin-header-text .notice p {
+	padding: 10px 0;
+}
+
+.d2i-a11y-nav-tabs {
+	margin-bottom: 20px;
+}
+
+.d2i-a11y-settings-layout {
+	display: flex;
+	gap: 24px;
+	align-items: flex-start;
+}
+
+.d2i-a11y-settings-main {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.d2i-a11y-settings-preview {
+	flex: 0 0 220px;
+	background: #f9f9f9;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 16px;
+	position: sticky;
+	top: 32px;
+}
+
+.d2i-a11y-settings-preview h3 {
+	margin-top: 0;
+	color: #003366;
+}
+
+.d2i-a11y-preview-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 120px;
+	background: #e8edf2;
+	border-radius: 6px;
+	margin: 12px 0;
+}
+
+.d2i-a11y-preview-trigger {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: default;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+	transition: transform 0.2s;
+}
+
+.d2i-a11y-preview-note {
+	font-size: 12px;
+	color: #666;
+}
+
+.d2i-a11y-preview-note p {
+	margin: 0 0 8px;
+}
+
+/* ---------- Statement tool ---------- */
+.d2i-a11y-statement-tool {
+	max-width: 760px;
+}
+
+.d2i-a11y-statement-form .form-table th {
+	width: 220px;
+}
+
+/* ---------- Footer ---------- */
+.d2i-a11y-admin-footer {
+	margin-top: 40px;
+	padding-top: 16px;
+	border-top: 1px solid #ddd;
+	font-size: 13px;
+	color: #666;
+}
+
+.d2i-a11y-disclaimer {
+	font-style: italic;
+	max-width: 700px;
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 900px) {
+	.d2i-a11y-settings-layout {
+		flex-direction: column;
+	}
+	.d2i-a11y-settings-preview {
+		flex: none;
+		width: 100%;
+		position: static;
+	}
+}
+
+/* ---------- Color picker swatch enhancement ---------- */
+.wp-picker-container .wp-color-result {
+	border-radius: 4px;
+}

@@ -1,0 +1,329 @@
+/*
+ * D2i Accessibility Toolkit — Feature CSS
+ * Classes applied to <html> to modify the host page.
+ * The widget itself is excluded from all rules via :not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *).
+ * For filter-based modes (contrast, saturation) the widget is counter-filtered separately.
+ *
+ * @package D2i_Accessibility_Toolkit
+ */
+
+/* =====================================================================
+   1. CONTRAST MODES
+   ===================================================================== */
+
+/* -- Dark Contrast -- */
+html.d2i-a11y-contrast-dark *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	background-color: #1a1a1a !important;
+	color: #f0f0f0 !important;
+	border-color: #555 !important;
+}
+
+html.d2i-a11y-contrast-dark a:not(#d2i-a11y-wrapper a) {
+	color: #7ec8e3 !important;
+}
+
+html.d2i-a11y-contrast-dark a:visited:not(#d2i-a11y-wrapper a) {
+	color: #b39ddb !important;
+}
+
+html.d2i-a11y-contrast-dark img:not(#d2i-a11y-wrapper img) {
+	filter: brightness(0.85) !important;
+}
+
+/* -- Light Contrast -- */
+html.d2i-a11y-contrast-light *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	background-color: #ffffff !important;
+	color: #000000 !important;
+	border-color: #999 !important;
+}
+
+html.d2i-a11y-contrast-light a:not(#d2i-a11y-wrapper a) {
+	color: #0000cc !important;
+}
+
+html.d2i-a11y-contrast-light a:visited:not(#d2i-a11y-wrapper a) {
+	color: #551a8b !important;
+}
+
+/* -- High Contrast (black bg, white text, yellow links) -- */
+html.d2i-a11y-contrast-high *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	background-color: #000000 !important;
+	color: #ffffff !important;
+	border-color: #ffffff !important;
+	text-shadow: none !important;
+	box-shadow: none !important;
+}
+
+html.d2i-a11y-contrast-high a:not(#d2i-a11y-wrapper a),
+html.d2i-a11y-contrast-high a:visited:not(#d2i-a11y-wrapper a) {
+	color: #ffff00 !important;
+	text-decoration: underline !important;
+}
+
+html.d2i-a11y-contrast-high a:hover:not(#d2i-a11y-wrapper a),
+html.d2i-a11y-contrast-high a:focus:not(#d2i-a11y-wrapper a) {
+	color: #00ff00 !important;
+	outline: 2px solid #00ff00 !important;
+}
+
+html.d2i-a11y-contrast-high *:focus:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	outline: 3px solid #ffff00 !important;
+	outline-offset: 2px !important;
+}
+
+html.d2i-a11y-contrast-high img:not(#d2i-a11y-wrapper img) {
+	filter: grayscale(1) contrast(1.5) !important;
+}
+
+
+/* =====================================================================
+   2. HIGHLIGHT LINKS
+   ===================================================================== */
+
+html.d2i-a11y-highlight-links a:not(#d2i-a11y-wrapper a) {
+	outline: 2px solid currentColor !important;
+	outline-offset: 2px !important;
+	text-decoration: underline !important;
+	background-color: rgba(255, 255, 0, 0.25) !important;
+	border-radius: 2px !important;
+}
+
+html.d2i-a11y-highlight-links a:visited:not(#d2i-a11y-wrapper a) {
+	background-color: rgba(200, 150, 255, 0.2) !important;
+}
+
+html.d2i-a11y-highlight-links a:hover:not(#d2i-a11y-wrapper a),
+html.d2i-a11y-highlight-links a:focus:not(#d2i-a11y-wrapper a) {
+	background-color: rgba(255, 255, 0, 0.5) !important;
+	outline-width: 3px !important;
+}
+
+/* =====================================================================
+   3. BIGGER TEXT (scales :root font-size, rem values propagate)
+   ===================================================================== */
+
+html.d2i-a11y-bigger-text-120 { font-size: 120% !important; }
+html.d2i-a11y-bigger-text-140 { font-size: 140% !important; }
+html.d2i-a11y-bigger-text-160 { font-size: 160% !important; }
+html.d2i-a11y-bigger-text-180 { font-size: 180% !important; }
+html.d2i-a11y-bigger-text-200 { font-size: 200% !important; }
+
+/* Allow reflow at larger sizes. */
+html[class*="d2i-a11y-bigger-text-"] *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	max-width: 100% !important;
+	overflow-wrap: break-word !important;
+	word-break: break-word !important;
+}
+
+/* Exclude the widget from font scaling. */
+html[class*="d2i-a11y-bigger-text-"] #d2i-a11y-wrapper {
+	font-size: 16px !important;
+}
+
+/* =====================================================================
+   4. TEXT SPACING  (WCAG 1.4.12 exact values)
+   ===================================================================== */
+
+html.d2i-a11y-text-spacing *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	line-height: 1.5 !important;
+	letter-spacing: 0.12em !important;
+	word-spacing: 0.16em !important;
+}
+
+html.d2i-a11y-text-spacing p:not(#d2i-a11y-wrapper p) {
+	margin-bottom: 2em !important;
+}
+
+/* =====================================================================
+   5. PAUSE ANIMATIONS
+   ===================================================================== */
+
+html.d2i-a11y-pause-animations *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	animation-play-state: paused !important;
+	transition: none !important;
+}
+
+html.d2i-a11y-pause-animations video:not(#d2i-a11y-wrapper video) {
+	/* JS handles actual video.pause(); CSS signals the state */
+}
+
+/* =====================================================================
+   6. HIDE IMAGES
+   ===================================================================== */
+
+html.d2i-a11y-hide-images img:not(#d2i-a11y-wrapper img),
+html.d2i-a11y-hide-images picture:not(#d2i-a11y-wrapper picture),
+html.d2i-a11y-hide-images svg:not(#d2i-a11y-wrapper svg):not([aria-label]):not([role="img"]) {
+	display: none !important;
+}
+
+/* Background images on non-widget elements */
+html.d2i-a11y-hide-images *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	background-image: none !important;
+}
+
+/* Injected alt-text nodes are visible. */
+.d2i-a11y-alt-text {
+	display: inline-block !important;
+	font-size: 0.85em !important;
+	color: #555 !important;
+	font-style: italic !important;
+	border: 1px dashed #999 !important;
+	padding: 2px 6px !important;
+	border-radius: 3px !important;
+	background: #f5f5f5 !important;
+	max-width: 200px !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	white-space: nowrap !important;
+}
+
+/* =====================================================================
+   7. DYSLEXIA FRIENDLY (OpenDyslexic font)
+   ===================================================================== */
+
+@font-face {
+	font-family: 'OpenDyslexic';
+	src: url('../fonts/OpenDyslexic-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'OpenDyslexic';
+	src: url('../fonts/OpenDyslexic-Bold.woff2') format('woff2');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Exclude <i> tags and common icon-font class patterns (fa, dashicons, material-icons,
+   etc.) — those elements render glyph characters that break when the font changes. */
+html.d2i-a11y-dyslexia *:not(i):not(.ti):not([class*="fa"]):not([class*="fa-"]):not([class*="icon"]):not([class*="dashicon"]):not([class*="glyphicon"]):not(.material-icons):not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	font-family: 'OpenDyslexic', 'Comic Sans MS', 'Arial', sans-serif !important;
+	line-height: 1.8 !important;
+	letter-spacing: 0.05em !important;
+	text-align: left !important;
+}
+
+/* =====================================================================
+   8. CURSOR
+   ===================================================================== */
+
+html.d2i-a11y-cursor-white,
+html.d2i-a11y-cursor-white *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	cursor: url('../images/cursor-big-white.svg') 8 8, auto !important;
+}
+
+html.d2i-a11y-cursor-black,
+html.d2i-a11y-cursor-black *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	cursor: url('../images/cursor-big-black.svg') 8 8, auto !important;
+}
+
+/* =====================================================================
+   9. LINE HEIGHT (stepped)
+   ===================================================================== */
+
+html.d2i-a11y-line-height-150 *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	line-height: 1.5 !important;
+}
+
+html.d2i-a11y-line-height-175 *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	line-height: 1.75 !important;
+}
+
+html.d2i-a11y-line-height-200 *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	line-height: 2 !important;
+}
+
+html.d2i-a11y-line-height-250 *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	line-height: 2.5 !important;
+}
+
+/* =====================================================================
+   10. TEXT ALIGNMENT (justify intentionally excluded per WCAG 1.4.8)
+   ===================================================================== */
+
+html.d2i-a11y-text-align-left *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	text-align: left !important;
+}
+
+html.d2i-a11y-text-align-center *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	text-align: center !important;
+}
+
+html.d2i-a11y-text-align-right *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	text-align: right !important;
+}
+
+
+/* =====================================================================
+   11. READABLE FONT
+   ===================================================================== */
+
+html.d2i-a11y-readable-font *:not(i):not(.ti):not([class*="fa"]):not([class*="icon"]):not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	font-family: Arial, Helvetica, Verdana, sans-serif !important;
+}
+
+/* =====================================================================
+   12. BOLD TEXT
+   ===================================================================== */
+
+html.d2i-a11y-bold-text *:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	font-weight: 700 !important;
+}
+
+/* =====================================================================
+   13. HIGHLIGHT TITLES
+   ===================================================================== */
+
+html.d2i-a11y-highlight-titles h1:not(#d2i-a11y-wrapper *),
+html.d2i-a11y-highlight-titles h2:not(#d2i-a11y-wrapper *),
+html.d2i-a11y-highlight-titles h3:not(#d2i-a11y-wrapper *),
+html.d2i-a11y-highlight-titles h4:not(#d2i-a11y-wrapper *),
+html.d2i-a11y-highlight-titles h5:not(#d2i-a11y-wrapper *),
+html.d2i-a11y-highlight-titles h6:not(#d2i-a11y-wrapper *) {
+	background-color: #fff9c4 !important;
+	border-left: 4px solid #f9a825 !important;
+	padding-left: 10px !important;
+	outline: none !important;
+}
+
+/* =====================================================================
+   14. KEYBOARD NAVIGATION — enhanced focus rings
+   ===================================================================== */
+
+html.d2i-a11y-keyboard-nav *:focus:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+	outline: 3px solid #0066cc !important;
+	outline-offset: 3px !important;
+	box-shadow: 0 0 0 6px rgba(0, 102, 204, 0.25) !important;
+}
+
+/* =====================================================================
+   15. READING GUIDE LINE (injected element, always visible when active)
+   ===================================================================== */
+
+#d2i-a11y-reading-guide {
+	position: fixed !important;
+	left: 0 !important;
+	right: 0 !important;
+	height: 4px !important;
+	background: rgba(255, 165, 0, 0.75) !important;
+	pointer-events: none !important;
+	z-index: 2147483646 !important;
+	top: 50% !important;
+	box-shadow: 0 0 8px rgba(255, 140, 0, 0.5) !important;
+}
+
+/* =====================================================================
+   AUTO: Honour OS prefers-reduced-motion (initial state applied early
+   via the inline head script; this CSS is a belt-and-suspenders).
+   ===================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+	*:not(#d2i-a11y-wrapper):not(#d2i-a11y-wrapper *) {
+		animation-play-state: paused !important;
+		transition: none !important;
+	}
+}

@@ -1,0 +1,675 @@
+/*
+ * D2i Accessibility Toolkit — Widget UI Styles
+ * Uses CSS custom properties for easy theming.
+ * The widget is completely isolated — never affected by its own features.
+ *
+ * @package D2i_Accessibility_Toolkit
+ */
+
+/* =====================================================================
+   CSS CUSTOM PROPERTIES (overridden by inline style in PHP)
+   ===================================================================== */
+
+:root {
+	--d2i-a11y-brand:        #003366;
+	--d2i-a11y-brand-hover:  #00255a;
+	--d2i-a11y-brand-text:   #ffffff;
+	--d2i-a11y-trigger-size: 56px;
+	--d2i-a11y-panel-width:  360px;
+	--d2i-a11y-panel-radius: 12px;
+	--d2i-a11y-shadow:       0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.1);
+	--d2i-a11y-tile-bg:      #f5f7fa;
+	--d2i-a11y-tile-active:  #003366;
+	--d2i-a11y-tile-active-text: #ffffff;
+	--d2i-a11y-focus-ring:   0 0 0 3px #0066cc;
+	--d2i-a11y-anim-dur:     0.25s;
+	/* Position (overridden per admin setting) */
+	--d2i-a11y-bottom:       24px;
+	--d2i-a11y-right:        24px;
+	--d2i-a11y-top:          auto;
+	--d2i-a11y-left:         auto;
+}
+
+/* =====================================================================
+   WRAPPER — isolation from page filters
+   ===================================================================== */
+
+#d2i-a11y-wrapper {
+	/* Reset inherited styles */
+	all: initial;
+	/* Re-apply essentials */
+	position: fixed !important;
+	bottom: var(--d2i-a11y-bottom) !important;
+	right:  var(--d2i-a11y-right)  !important;
+	top:    var(--d2i-a11y-top)    !important;
+	left:   var(--d2i-a11y-left)   !important;
+	z-index: 2147483647 !important;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif !important;
+	font-size: 16px !important;
+	line-height: 1.5 !important;
+	color: #1a1a1a !important;
+	box-sizing: border-box !important;
+	isolation: isolate !important;
+	/* Middle-position vertical centering */
+	transform: var(--d2i-a11y-transform, none) !important;
+}
+
+/* Middle-left / middle-right vertical centering */
+#d2i-a11y-wrapper.d2i-a11y-pos-middle-right,
+#d2i-a11y-wrapper.d2i-a11y-pos-middle-left {
+	--d2i-a11y-transform: translateY(-50%);
+}
+
+/* =====================================================================
+   SKIP LINK
+   ===================================================================== */
+
+.d2i-a11y-skip-link {
+	position: absolute !important;
+	top: -100px !important;
+	left: 0 !important;
+	z-index: 2147483646 !important;
+	background: var(--d2i-a11y-brand) !important;
+	color: #ffffff !important;
+	padding: 12px 24px !important;
+	font-size: 16px !important;
+	text-decoration: none !important;
+	border-radius: 0 0 8px 0 !important;
+	transition: top var(--d2i-a11y-anim-dur) !important;
+}
+
+.d2i-a11y-skip-link:focus {
+	top: 0 !important;
+}
+
+/* =====================================================================
+   TRIGGER BUTTON
+   ===================================================================== */
+
+.d2i-a11y-trigger {
+	width:  var(--d2i-a11y-trigger-size) !important;
+	height: var(--d2i-a11y-trigger-size) !important;
+	border-radius: 50% !important;
+	background: var(--d2i-a11y-brand) !important;
+	color: var(--d2i-a11y-brand-text) !important;
+	border: none !important;
+	cursor: pointer !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	box-shadow: var(--d2i-a11y-shadow) !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	transition: background var(--d2i-a11y-anim-dur), transform var(--d2i-a11y-anim-dur), box-shadow var(--d2i-a11y-anim-dur) !important;
+	-webkit-tap-highlight-color: transparent !important;
+}
+
+.d2i-a11y-trigger:hover {
+	background: var(--d2i-a11y-brand-hover) !important;
+	transform: scale(1.08) !important;
+}
+
+.d2i-a11y-trigger:focus-visible {
+	outline: none !important;
+	box-shadow: var(--d2i-a11y-shadow), var(--d2i-a11y-focus-ring) !important;
+}
+
+.d2i-a11y-trigger[aria-expanded="true"] {
+	background: var(--d2i-a11y-brand-hover) !important;
+	transform: scale(1.04) !important;
+}
+
+/* =====================================================================
+   PANEL
+   ===================================================================== */
+
+.d2i-a11y-panel {
+	position: absolute !important;
+	bottom: calc(var(--d2i-a11y-trigger-size) + 12px) !important;
+	right: 0 !important;
+	width: var(--d2i-a11y-panel-width) !important;
+	max-height: 80vh !important;
+	background: #ffffff !important;
+	border-radius: var(--d2i-a11y-panel-radius) !important;
+	box-shadow: var(--d2i-a11y-shadow) !important;
+	display: none !important;
+	flex-direction: column !important;
+	overflow: hidden !important;
+	/* Slide-in animation */
+	opacity: 0 !important;
+	transform: translateY(12px) scale(0.97) !important;
+	pointer-events: none !important;
+	transition:
+		opacity var(--d2i-a11y-anim-dur) ease,
+		transform var(--d2i-a11y-anim-dur) ease !important;
+}
+
+/* Left-side panel positions */
+#d2i-a11y-wrapper.d2i-a11y-pos-bottom-left .d2i-a11y-panel,
+#d2i-a11y-wrapper.d2i-a11y-pos-top-left    .d2i-a11y-panel,
+#d2i-a11y-wrapper.d2i-a11y-pos-middle-left .d2i-a11y-panel {
+	right: auto !important;
+	left: 0 !important;
+}
+
+/* Top-anchor panel positions */
+#d2i-a11y-wrapper.d2i-a11y-pos-top-right  .d2i-a11y-panel,
+#d2i-a11y-wrapper.d2i-a11y-pos-top-left   .d2i-a11y-panel {
+	bottom: auto !important;
+	top: calc(var(--d2i-a11y-trigger-size) + 12px) !important;
+	transform: translateY(-12px) scale(0.97) !important;
+}
+
+.d2i-a11y-panel.d2i-a11y-panel-open {
+	display: flex !important;
+	opacity: 1 !important;
+	transform: none !important;
+	pointer-events: auto !important;
+}
+
+/* Respect prefers-reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+	.d2i-a11y-trigger,
+	.d2i-a11y-panel {
+		transition: none !important;
+	}
+}
+
+/* =====================================================================
+   PANEL HEADER
+   ===================================================================== */
+
+.d2i-a11y-panel-header {
+	display: flex !important;
+	align-items: center !important;
+	gap: 10px !important;
+	padding: 14px 16px !important;
+	background: var(--d2i-a11y-brand) !important;
+	color: #ffffff !important;
+	flex-shrink: 0 !important;
+}
+
+.d2i-a11y-logo {
+	color: #ffffff !important;
+	flex-shrink: 0 !important;
+}
+
+.d2i-a11y-panel-title {
+	flex: 1 1 auto !important;
+	margin: 0 !important;
+	font-size: 16px !important;
+	font-weight: 600 !important;
+	color: #ffffff !important;
+	line-height: 1.2 !important;
+}
+
+.d2i-a11y-close-btn {
+	flex-shrink: 0 !important;
+	width: 36px !important;
+	height: 36px !important;
+	border-radius: 50% !important;
+	background: rgba(255,255,255,0.15) !important;
+	border: none !important;
+	color: #ffffff !important;
+	cursor: pointer !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	padding: 0 !important;
+	transition: background var(--d2i-a11y-anim-dur) !important;
+}
+
+.d2i-a11y-close-btn:hover {
+	background: rgba(255,255,255,0.3) !important;
+}
+
+.d2i-a11y-close-btn:focus-visible {
+	outline: 3px solid #ffffff !important;
+	outline-offset: 2px !important;
+}
+
+/* =====================================================================
+   PANEL BODY
+   ===================================================================== */
+
+.d2i-a11y-panel-body {
+	flex: 1 1 auto !important;
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+	padding: 0 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	-webkit-overflow-scrolling: touch !important;
+}
+
+/* Force [hidden] to work even when display is set with !important. */
+#d2i-a11y-panel-body[hidden],
+.d2i-a11y-statement-view[hidden] {
+	display: none !important;
+}
+
+/* =====================================================================
+   PROFILES SECTION
+   ===================================================================== */
+
+.d2i-a11y-profiles-section {
+	padding: 10px 12px 8px !important;
+	border-bottom: 1px solid #e8e8e8 !important;
+	background: #f8f9fb !important;
+}
+
+.d2i-a11y-profiles-label {
+	font-size: 10px !important;
+	font-weight: 700 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.06em !important;
+	color: #888 !important;
+	margin: 0 0 6px !important;
+}
+
+.d2i-a11y-profiles-grid {
+	display: grid !important;
+	grid-template-columns: 1fr 1fr !important;
+	gap: 6px !important;
+}
+
+.d2i-a11y-profile-btn {
+	display: flex !important;
+	align-items: center !important;
+	gap: 6px !important;
+	padding: 7px 10px !important;
+	background: #ffffff !important;
+	border: 1.5px solid #ddd !important;
+	border-radius: 8px !important;
+	cursor: pointer !important;
+	font-size: 11px !important;
+	font-weight: 600 !important;
+	color: #333 !important;
+	text-align: left !important;
+	transition: background var(--d2i-a11y-anim-dur), border-color var(--d2i-a11y-anim-dur) !important;
+	min-height: 44px !important;
+	-webkit-tap-highlight-color: transparent !important;
+}
+
+.d2i-a11y-profile-btn:hover {
+	background: #f0f4ff !important;
+	border-color: var(--d2i-a11y-brand) !important;
+}
+
+.d2i-a11y-profile-btn:focus-visible {
+	outline: none !important;
+	box-shadow: var(--d2i-a11y-focus-ring) !important;
+	border-color: #0066cc !important;
+}
+
+.d2i-a11y-profile-btn.d2i-a11y-active {
+	background: var(--d2i-a11y-tile-active) !important;
+	color: var(--d2i-a11y-tile-active-text) !important;
+	border-color: transparent !important;
+}
+
+.d2i-a11y-profile-icon {
+	flex-shrink: 0 !important;
+	width: 22px !important;
+	height: 22px !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+/* =====================================================================
+   FEATURES GRID (inside panel body)
+   ===================================================================== */
+
+.d2i-a11y-features-grid {
+	padding: 12px !important;
+	display: grid !important;
+	grid-template-columns: 1fr 1fr 1fr !important;
+	gap: 8px !important;
+	align-content: start !important;
+}
+
+/* Scrollbar styling for webkit. */
+.d2i-a11y-panel-body::-webkit-scrollbar {
+	width: 6px !important;
+}
+.d2i-a11y-panel-body::-webkit-scrollbar-thumb {
+	background: #ccc !important;
+	border-radius: 3px !important;
+}
+
+/* =====================================================================
+   FEATURE TILES
+   ===================================================================== */
+
+.d2i-a11y-tile {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	gap: 6px !important;
+	padding: 10px 6px !important;
+	min-height: 88px !important;
+	min-width: 88px !important;
+	background: var(--d2i-a11y-tile-bg) !important;
+	border: 2px solid transparent !important;
+	border-radius: 10px !important;
+	cursor: pointer !important;
+	color: #333333 !important;
+	text-align: center !important;
+	font-size: 11px !important;
+	font-weight: 500 !important;
+	line-height: 1.3 !important;
+	transition:
+		background var(--d2i-a11y-anim-dur),
+		border-color var(--d2i-a11y-anim-dur),
+		color var(--d2i-a11y-anim-dur) !important;
+	-webkit-tap-highlight-color: transparent !important;
+}
+
+.d2i-a11y-tile:hover {
+	background: #e8edf5 !important;
+	border-color: var(--d2i-a11y-brand) !important;
+}
+
+.d2i-a11y-tile:focus-visible {
+	outline: none !important;
+	box-shadow: var(--d2i-a11y-focus-ring) !important;
+	border-color: #0066cc !important;
+}
+
+/* Active state — toggle on / cycle step > 0 */
+.d2i-a11y-tile[aria-pressed="true"],
+.d2i-a11y-tile.d2i-a11y-active {
+	background: var(--d2i-a11y-tile-active) !important;
+	color: var(--d2i-a11y-tile-active-text) !important;
+	border-color: transparent !important;
+}
+
+.d2i-a11y-tile-icon {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	width: 32px !important;
+	height: 32px !important;
+	pointer-events: none !important;
+}
+
+.d2i-a11y-tile-icon svg {
+	width: 28px !important;
+	height: 28px !important;
+}
+
+.d2i-a11y-tile-label {
+	display: block !important;
+	font-size: 11px !important;
+	font-weight: 600 !important;
+	line-height: 1.2 !important;
+}
+
+.d2i-a11y-tile-state {
+	display: block !important;
+	font-size: 10px !important;
+	font-weight: 400 !important;
+	opacity: 0.8 !important;
+	min-height: 14px !important;
+}
+
+/* =====================================================================
+   PANEL FOOTER
+   ===================================================================== */
+
+.d2i-a11y-panel-footer {
+	flex-shrink: 0 !important;
+	padding: 10px 16px !important;
+	border-top: 1px solid #e8e8e8 !important;
+	display: flex !important;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	gap: 8px !important;
+	background: #fafafa !important;
+}
+
+.d2i-a11y-reset-btn {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 4px !important;
+	padding: 6px 12px !important;
+	background: #f0f0f0 !important;
+	border: 1px solid #ccc !important;
+	border-radius: 20px !important;
+	color: #333 !important;
+	font-size: 12px !important;
+	font-weight: 500 !important;
+	cursor: pointer !important;
+	transition: background var(--d2i-a11y-anim-dur) !important;
+}
+
+.d2i-a11y-reset-btn:hover {
+	background: #e0e0e0 !important;
+}
+
+.d2i-a11y-reset-btn:focus-visible {
+	outline: none !important;
+	box-shadow: var(--d2i-a11y-focus-ring) !important;
+}
+
+.d2i-a11y-statement-link {
+	font-size: 12px !important;
+	color: var(--d2i-a11y-brand) !important;
+	text-decoration: underline !important;
+	background: none !important;
+	border: none !important;
+	padding: 0 !important;
+	cursor: pointer !important;
+}
+
+.d2i-a11y-statement-link:hover,
+.d2i-a11y-statement-link:focus-visible {
+	color: var(--d2i-a11y-brand-hover) !important;
+	outline: 2px solid var(--d2i-a11y-brand) !important;
+	outline-offset: 2px !important;
+}
+
+/* =====================================================================
+   INLINE STATEMENT VIEW
+   ===================================================================== */
+
+.d2i-a11y-statement-view {
+	flex: 1 1 auto !important;
+	display: flex !important;
+	flex-direction: column !important;
+	overflow: hidden !important;
+}
+
+.d2i-a11y-statement-view[hidden] {
+	display: none !important;
+}
+
+.d2i-a11y-statement-nav {
+	display: flex !important;
+	align-items: center !important;
+	gap: 10px !important;
+	padding: 10px 14px !important;
+	border-bottom: 1px solid #e8e8e8 !important;
+	background: #f8f9fb !important;
+	flex-shrink: 0 !important;
+}
+
+.d2i-a11y-statement-nav-title {
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	color: #333 !important;
+}
+
+.d2i-a11y-back-btn {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 4px !important;
+	padding: 5px 10px !important;
+	background: #ffffff !important;
+	border: 1.5px solid #ddd !important;
+	border-radius: 6px !important;
+	color: #333 !important;
+	font-size: 12px !important;
+	font-weight: 500 !important;
+	cursor: pointer !important;
+	transition: background var(--d2i-a11y-anim-dur) !important;
+	flex-shrink: 0 !important;
+}
+
+.d2i-a11y-back-btn:hover {
+	background: #f0f0f0 !important;
+}
+
+.d2i-a11y-back-btn:focus-visible {
+	outline: none !important;
+	box-shadow: var(--d2i-a11y-focus-ring) !important;
+}
+
+.d2i-a11y-statement-content {
+	flex: 1 1 auto !important;
+	overflow-y: auto !important;
+	padding: 14px 16px !important;
+	font-size: 12px !important;
+	line-height: 1.6 !important;
+	color: #333 !important;
+	-webkit-overflow-scrolling: touch !important;
+}
+
+.d2i-a11y-statement-content h3 {
+	font-size: 13px !important;
+	font-weight: 700 !important;
+	color: var(--d2i-a11y-brand) !important;
+	margin: 14px 0 6px !important;
+	padding: 0 !important;
+	border: none !important;
+	background: none !important;
+}
+
+.d2i-a11y-statement-content h3:first-child {
+	margin-top: 0 !important;
+}
+
+.d2i-a11y-statement-content p {
+	margin: 0 0 8px !important;
+}
+
+.d2i-a11y-statement-content a {
+	color: var(--d2i-a11y-brand) !important;
+	text-decoration: underline !important;
+}
+
+.d2i-a11y-legal-notice {
+	margin-top: 14px !important;
+	padding: 10px 12px !important;
+	background: #fff3cd !important;
+	border: 1px solid #ffc107 !important;
+	border-radius: 6px !important;
+	font-size: 11px !important;
+	line-height: 1.5 !important;
+	color: #5c4a00 !important;
+}
+
+.d2i-a11y-powered-by {
+	font-size: 11px !important;
+	color: #888 !important;
+	margin-left: auto !important;
+	white-space: nowrap !important;
+}
+
+.d2i-a11y-powered-by-link {
+	color: var(--d2i-a11y-brand) !important;
+	text-decoration: none !important;
+	font-weight: 600 !important;
+}
+
+.d2i-a11y-powered-by-link:hover {
+	text-decoration: underline !important;
+}
+
+.d2i-a11y-powered-by-link:focus-visible {
+	outline: 2px solid var(--d2i-a11y-brand) !important;
+	outline-offset: 2px !important;
+}
+
+/* =====================================================================
+   SCREEN-READER ONLY UTILITY
+   ===================================================================== */
+
+.d2i-a11y-sr-only {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+/* =====================================================================
+   RESPONSIVE — tablet (≤768 px) and mobile (≤480 px)
+
+   On small screens the panel switches from position:absolute (relative
+   to the 56 px-wide wrapper) to position:fixed (relative to the viewport)
+   so it can never overflow the screen edges regardless of trigger placement.
+   Bottom value of 100px = trigger(56) + default-margin(24) + gap(12) + buffer(8).
+   ===================================================================== */
+
+@media screen and (max-width: 768px) {
+	/* Panel anchored below viewport center — opens upward */
+	.d2i-a11y-panel {
+		position: fixed !important;
+		left: 8px !important;
+		right: 8px !important;
+		width: auto !important;
+		max-width: none !important;
+		bottom: 100px !important;
+		top: auto !important;
+		max-height: calc(100vh - 116px) !important;
+	}
+
+	/* Top-anchored trigger — panel opens downward */
+	#d2i-a11y-wrapper.d2i-a11y-pos-top-right .d2i-a11y-panel,
+	#d2i-a11y-wrapper.d2i-a11y-pos-top-left  .d2i-a11y-panel {
+		bottom: auto !important;
+		top: 100px !important;
+		max-height: calc(100vh - 116px) !important;
+	}
+
+	/* No slide transform needed — the panel is viewport-fixed */
+	.d2i-a11y-panel.d2i-a11y-panel-open {
+		transform: none !important;
+	}
+}
+
+/* Mobile (≤480 px): slightly tighter margins and smaller tiles */
+@media screen and (max-width: 480px) {
+	.d2i-a11y-panel {
+		left: 6px !important;
+		right: 6px !important;
+		bottom: 92px !important;
+		max-height: calc(100vh - 108px) !important;
+	}
+
+	.d2i-a11y-features-grid {
+		grid-template-columns: 1fr 1fr 1fr !important;
+	}
+
+	.d2i-a11y-tile {
+		min-height: 80px !important;
+		min-width: 0 !important;
+		width: 100% !important;
+	}
+
+	.d2i-a11y-profiles-grid {
+		grid-template-columns: 1fr 1fr !important;
+	}
+}
+
+/* IE11 graceful degradation — hide widget silently */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	#d2i-a11y-wrapper { display: none !important; }
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Large White Cursor</title>
+  <!-- Arrow pointer shape: white fill, black outline for visibility on any background -->
+  <polygon points="8,8 8,52 20,40 28,60 36,56 28,36 46,36" fill="white" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+</svg>
