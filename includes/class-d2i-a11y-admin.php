@@ -211,7 +211,7 @@ class D2i_A11y_Admin {
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue_assets( $hook ) {
-		if ( 'settings_page_' . self::MENU_SLUG !== $hook ) {
+		if ( 'toplevel_page_' . self::MENU_SLUG !== $hook ) {
 			return;
 		}
 

@@ -1,13 +1,13 @@
 <?php
 /**
  * Plugin Name:       D2i Accessibility Toolkit
- * Plugin URI:        https://d2itechnology.com
+ * Plugin URI:        https://wordpress.org/plugins/d2i-accessibility-toolkit/
  * Description:       A floating accessibility widget providing one-click adjustments to support WCAG 2.1 AA + 2.2, ADA Title II/III, Section 508, and EN 301 549. No external requests. No tracking. All features included free.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            D2i Technology
- * Author URI:        https://d2itechnology.com/about-us
+ * Author URI:        https://d2itechnology.com/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       d2i-accessibility-toolkit
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'D2I_A11Y_VERSION', '1.0.0' );
+define( 'D2I_A11Y_VERSION', '1.0.1' );
 define( 'D2I_A11Y_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'D2I_A11Y_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'D2I_A11Y_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );

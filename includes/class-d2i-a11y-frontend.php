@@ -182,7 +182,7 @@ JS;
 				alt="D2i Technology"
 				class="d2i-a11y-logo"
 				width="60"
-				height="20"
+				height="50"
 				loading="lazy"
 			>
 			<h2 id="d2i-a11y-title" class="d2i-a11y-panel-title">

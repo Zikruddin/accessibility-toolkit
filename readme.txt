@@ -2,9 +2,9 @@
 Contributors:      d2itechnology
 Tags:              accessibility, wcag, ada, widget
 Requires at least: 6.0
-Tested up to:      6.9
+Tested up to:      7.0
 Requires PHP:      7.4
-Stable tag:        1.0.0
+Stable tag:        1.0.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -100,10 +100,17 @@ Yes. It makes no external requests, sets no cookies, and stores no personal data
 
 == Changelog ==
 
+= 1.0.1 =
+* Confirmed compatibility with WordPress 7.0
+* Fixed admin assets (CSS/JS) not loading on the plugin settings page
+
 = 1.0.0 =
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Confirmed compatibility with WordPress 7.0. Fixes admin settings page styles not loading correctly.
 
 = 1.0.0 =
 Initial release.
